@@ -4,12 +4,13 @@ REM Penser à modificer le numéro de version (set ver=...)
 REM Le nom de la dll est en dos 8.3 donc le nom de version est abrégé en rc2x
 REM Il faut ensuite faire les fichiers d'installation avec msklc
 REM (Attention a bien garder le même nom de dll.)
-@echo off
-set ver=
-md bepo%ver%a
+set ver=ra
+
+REM Création des dossiers
+md bepo%ver%A
 md bepo%ver%
-md bepo%ver%c
-cd bepo%ver%a
+md bepo%ver%C
+cd bepo%ver%A
 md amd64
 md i386
 md ia64
@@ -23,25 +24,31 @@ md ia64
 md sources
 md wow64
 cd..
-cd bepo%ver%c
+cd bepo%ver%C
 md amd64
 md i386
 md ia64
 md sources
 md wow64
 cd..
-copy bepo-%ver%a.klc bepo%ver%a.klc
+
+REM Version azerty
+copy bepo-%ver%A.klc bepo%ver%A.klc
+move /y bepo%ver%A.klc bepo%ver%A/sources/
 kbdutool.exe -u -s bepo-%ver%A-kbd.klc
-move /y bepo%ver%a.* bepo%ver%a/sources/
+move /y bepo%ver%.* bepo%ver%A/sources/
 kbdutool.exe -u -x bepo-%ver%A-kbd.klc
-move /y bepo%ver%a.dll bepo%ver%a/i386/
+move /y bepo%ver%.dll bepo%ver%A/i386/
 kbdutool.exe -u -i bepo-%ver%A-kbd.klc
-move /y bepo%ver%a.dll bepo%ver%a/ia64/
+move /y bepo%ver%.dll bepo%ver%A/ia64/
 kbdutool.exe -u -m bepo-%ver%A-kbd.klc
-move /y bepo%ver%a.dll bepo%ver%a/amd64/
+move /y bepo%ver%.dll bepo%ver%A/amd64/
 kbdutool.exe -u -o bepo-%ver%A-kbd.klc
-move /y bepo%ver%a.dll bepo%ver%a/wow64/
+move /y bepo%ver%.dll bepo%ver%A/wow64/
+
+REM Version bépo simple
 copy bepo-%ver%b.klc bepo%ver%.klc
+move bepo%ver%.klc bepo%ver%/sources
 kbdutool.exe -u -s bepo-%ver%B-kbd.klc
 move /y bepo%ver%.* bepo%ver%/sources/
 kbdutool.exe -u -x bepo-%ver%B-kbd.klc
@@ -52,14 +59,18 @@ kbdutool.exe -u -m bepo-%ver%B-kbd.klc
 move /y bepo%ver%.dll bepo%ver%/amd64/
 kbdutool.exe -u -o bepo-%ver%B-kbd.klc
 move /y bepo%ver%.dll bepo%ver%/wow64/
-copy bepo-%ver%c.klc bepo%ver%c.klc
+
+
+REM Version qwerty
+copy bepo-%ver%C.klc bepo%ver%C.klc
+move bepo%ver%C.klc bepo%ver%C/sources/
 kbdutool.exe -u -s bepo-%ver%C-kbd.klc
-move /y bepo%ver%c.* bepo%ver%c/sources/
+move /y bepo%ver%.* bepo%ver%C/sources/
 kbdutool.exe -u -x bepo-%ver%C-kbd.klc
-move /y bepo%ver%c.dll bepo%ver%c/i386/
+move /y bepo%ver%.dll bepo%ver%C/i386/
 kbdutool.exe -u -i bepo-%ver%C-kbd.klc
-move /y bepo%ver%c.dll bepo%ver%c/ia64/
+move /y bepo%ver%.dll bepo%ver%C/ia64/
 kbdutool.exe -u -m bepo-%ver%C-kbd.klc
-move /y bepo%ver%c.dll bepo%ver%c/amd64/
+move /y bepo%ver%.dll bepo%ver%C/amd64/
 kbdutool.exe -u -o bepo-%ver%C-kbd.klc
-move /y bepo%ver%c.dll bepo%ver%c/wow64/
+move /y bepo%ver%.dll bepo%ver%C/wow64/
